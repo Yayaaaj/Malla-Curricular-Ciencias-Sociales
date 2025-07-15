@@ -1,4 +1,3 @@
-// Plan de estudios con requisitos
 const planEstudios = {
   "PRIMER SEMESTRE": {
     "Teorias del Aprendizaje": [],
@@ -43,7 +42,7 @@ const planEstudios = {
   "QUINTO SEMESTRE": {
     "Gestion Educativa": ["Curriculo y Evaluacion"],
     "Geografia Economica": ["Geografia Humana"],
-    "Historia America Siglos XVI al XVIII": ["Historia Moderna y Contemporanea"],
+    "Historia America Siglos XVI – XVIII": ["Historia Moderna y Contemporanea"],
     "Etnohistorias de las Comunidades Andinas y Mesoamericanas": [],
     "Practica I": ["Didactica de la Geografia"],
     "Metodologia de Investigacion en Ciencias Sociales": ["Investigacion Educativa en Ciencias Sociales"],
@@ -53,7 +52,7 @@ const planEstudios = {
   "SEXTO SEMESTRE": {
     "Contextos Escolares": ["Gestion Educativa"],
     "Dinamicas Urbanas": ["Geografia Economica"],
-    "Historia Colombia Siglo XIX": ["Historia America Siglos XVI al XVIII"],
+    "Historia Colombia Siglo XIX": ["Historia America Siglos XVI – XVIII"],
     "Practica II": ["Practica I"],
     "Trabajo de Grado I": ["Metodologia de Investigacion en Ciencias Sociales"],
     "Familia y Bioetica": [],
@@ -115,14 +114,11 @@ function crearMalla() {
         if (divMateria.classList.contains("bloqueada")) return;
 
         if (estaAprobada) {
-          // Desmarcar
           aprobadas = aprobadas.filter(m => m !== materia);
         } else {
-          // Marcar como aprobada
           aprobadas.push(materia);
         }
 
-        // Guardar estado actualizado
         localStorage.setItem("materiasAprobadas", JSON.stringify(aprobadas));
         actualizarMalla();
       };
