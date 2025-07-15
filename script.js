@@ -80,14 +80,10 @@ const planEstudios = {
   }
 };
 
-// ✅ Materias que ya viste tú (ajústalas aquí)
-let aprobadas = [
-  "Pensamiento Historico",
-  "Pensamiento Geografico",
-  "Competencias Comunicativas I"
-];
+// 🔁 Obtener materias aprobadas del almacenamiento local (o iniciar vacío)
+let aprobadas = JSON.parse(localStorage.getItem("materiasAprobadas")) || [];
 
-// Crea toda la malla
+// 🧱 Crear toda la malla
 function crearMalla() {
   const contenedor = document.getElementById("malla");
   contenedor.innerHTML = "";
@@ -95,6 +91,7 @@ function crearMalla() {
   for (let semestre in planEstudios) {
     const divSemestre = document.createElement("div");
     divSemestre.className = "semestre";
+
     const h2 = document.createElement("h2");
     h2.textContent = semestre;
     divSemestre.appendChild(h2);
@@ -115,11 +112,11 @@ function crearMalla() {
       }
 
       divMateria.onclick = () => {
-        if (divMateria.classList.contains("bloqueada")) return;
-        if (divMateria.classList.contains("aprobada")) return;
+        if (divMateria.classList.contains("bloqueada") || divMateria.classList.contains("aprobada")) return;
 
         divMateria.classList.add("aprobada");
         aprobadas.push(materia);
+        localStorage.setItem("materiasAprobadas", JSON.stringify(aprobadas)); // ✅ Guardar en localStorage
         actualizarMalla();
       };
 
@@ -130,10 +127,10 @@ function crearMalla() {
   }
 }
 
-// 🔄 Recalcula materias desbloqueadas cuando una es aprobada
+// 🔄 Recalcula materias desbloqueadas
 function actualizarMalla() {
   crearMalla();
 }
 
-// Inicializa la malla
+// ⏳ Inicializar malla al cargar
 window.onload = crearMalla;
