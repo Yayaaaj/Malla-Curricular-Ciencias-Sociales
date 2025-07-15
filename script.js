@@ -79,10 +79,8 @@ const planEstudios = {
   }
 };
 
-// Recuperar materias aprobadas del almacenamiento local
 let aprobadas = JSON.parse(localStorage.getItem("materiasAprobadas")) || [];
 
-// Crear la malla visual
 function crearMalla() {
   const contenedor = document.getElementById("malla");
   contenedor.innerHTML = "";
@@ -113,9 +111,11 @@ function crearMalla() {
       divMateria.onclick = () => {
         if (divMateria.classList.contains("bloqueada")) return;
 
-        if (estaAprobada) {
+        if (divMateria.classList.contains("aprobada")) {
+          divMateria.classList.remove("aprobada");
           aprobadas = aprobadas.filter(m => m !== materia);
         } else {
+          divMateria.classList.add("aprobada");
           aprobadas.push(materia);
         }
 
@@ -130,10 +130,8 @@ function crearMalla() {
   }
 }
 
-// Actualiza la visualización
 function actualizarMalla() {
   crearMalla();
 }
 
-// Inicializa al cargar
 window.onload = crearMalla;
