@@ -1,45 +1,50 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f0faff;
+  background-color: #f4f0ff;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  color: #3a0057;
   text-align: center;
   padding: 20px;
 }
 
 h1 {
-  color: #007acc;
+  margin-bottom: 40px;
+  font-size: 2.5em;
 }
 
-.malla {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 30px;
+#malla {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px;
+  justify-items: center;
 }
 
-.curso {
-  padding: 15px 20px;
-  font-size: 14px;
-  background-color: #b3e5fc;
-  border: 2px solid #0288d1;
-  border-radius: 8px;
+.materia {
+  background-color: #b689d4;
+  border: 3px solid #6a1b9a;
+  border-radius: 10px;
+  padding: 15px;
+  width: 220px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  font-size: 14px;
+  transition: transform 0.3s;
+  box-shadow: 2px 2px 10px #888;
 }
 
-.curso:hover {
-  background-color: #81d4fa;
+.materia:hover {
+  transform: scale(1.05);
 }
 
-.curso.bloqueado {
-  background-color: #d0d0d0;
-  border-color: #aaa;
-  color: #777;
+.bloqueada {
+  background-color: #e1d0f2;
+  color: #888;
+  border: 3px dashed #aaa;
   cursor: not-allowed;
 }
 
-.curso.aprobado {
-  background-color: #81c784;
-  border-color: #388e3c;
-  color: white;
+.semestre-titulo {
+  grid-column: span 4;
+  font-weight: bold;
+  font-size: 1.5em;
+  margin-top: 30px;
 }
