@@ -43,7 +43,7 @@ const planEstudios = {
   "QUINTO SEMESTRE": {
     "Gestion Educativa": ["Curriculo y Evaluacion"],
     "Geografia Economica": ["Geografia Humana"],
-    "Historia America Siglos XVI – XVIII": ["Historia Moderna y Contemporanea"],
+    "Historia America Siglos XVI al XVIII": ["Historia Moderna y Contemporanea"],
     "Etnohistorias de las Comunidades Andinas y Mesoamericanas": [],
     "Practica I": ["Didactica de la Geografia"],
     "Metodologia de Investigacion en Ciencias Sociales": ["Investigacion Educativa en Ciencias Sociales"],
@@ -53,7 +53,7 @@ const planEstudios = {
   "SEXTO SEMESTRE": {
     "Contextos Escolares": ["Gestion Educativa"],
     "Dinamicas Urbanas": ["Geografia Economica"],
-    "Historia Colombia Siglo XIX": ["Historia America Siglos XVI – XVIII"],
+    "Historia Colombia Siglo XIX": ["Historia America Siglos XVI al XVIII"],
     "Practica II": ["Practica I"],
     "Trabajo de Grado I": ["Metodologia de Investigacion en Ciencias Sociales"],
     "Familia y Bioetica": [],
@@ -80,10 +80,10 @@ const planEstudios = {
   }
 };
 
-// 🔁 Obtener materias aprobadas del almacenamiento local (o iniciar vacío)
+// Recuperar materias aprobadas del almacenamiento local
 let aprobadas = JSON.parse(localStorage.getItem("materiasAprobadas")) || [];
 
-// 🧱 Crear toda la malla
+// Crear la malla visual
 function crearMalla() {
   const contenedor = document.getElementById("malla");
   contenedor.innerHTML = "";
@@ -112,11 +112,18 @@ function crearMalla() {
       }
 
       divMateria.onclick = () => {
-        if (divMateria.classList.contains("bloqueada") || divMateria.classList.contains("aprobada")) return;
+        if (divMateria.classList.contains("bloqueada")) return;
 
-        divMateria.classList.add("aprobada");
-        aprobadas.push(materia);
-        localStorage.setItem("materiasAprobadas", JSON.stringify(aprobadas)); // ✅ Guardar en localStorage
+        if (estaAprobada) {
+          // Desmarcar
+          aprobadas = aprobadas.filter(m => m !== materia);
+        } else {
+          // Marcar como aprobada
+          aprobadas.push(materia);
+        }
+
+        // Guardar estado actualizado
+        localStorage.setItem("materiasAprobadas", JSON.stringify(aprobadas));
         actualizarMalla();
       };
 
@@ -127,10 +134,10 @@ function crearMalla() {
   }
 }
 
-// 🔄 Recalcula materias desbloqueadas
+// Actualiza la visualización
 function actualizarMalla() {
   crearMalla();
 }
 
-// ⏳ Inicializar malla al cargar
+// Inicializa al cargar
 window.onload = crearMalla;
