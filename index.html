@@ -6,18 +6,8 @@
   <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-  <h1>Malla Curricular - Lic. en Ciencias Sociales</h1>
-  <div class="malla">
-    <!-- Ejemplo de algunos cursos. Puedes agregar más según el PDF -->
-    <button class="curso" id="intro_historia" data-nombre="Introducción a la Historia">Introducción a la Historia</button>
-    <button class="curso bloqueado" id="historia_antigua" data-requiere="intro_historia">Historia Antigua</button>
-    <button class="curso bloqueado" id="historia_medieval" data-requiere="historia_antigua">Historia Medieval</button>
-    <button class="curso bloqueado" id="historia_moderna" data-requiere="historia_medieval">Historia Moderna</button>
-    <button class="curso bloqueado" id="historia_colombia" data-requiere="historia_moderna">Historia de Colombia</button>
-    <button class="curso bloqueado" id="geografia_general" data-requiere="intro_historia">Geografía General</button>
-    <button class="curso bloqueado" id="geografia_colombia" data-requiere="geografia_general">Geografía de Colombia</button>
-  </div>
-
+  <h1>Malla Curricular Ciencias Sociales</h1>
+  <div id="malla"></div>
   <script src="script.js"></script>
 </body>
 </html>
