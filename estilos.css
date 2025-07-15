@@ -1,15 +1,23 @@
+/* Paleta personalizada */
+:root {
+  --morado-profundo: #52357B;
+  --azul-violeta: #5459AC;
+  --azul-claro: #648DB3;
+  --verde-menta: #B2D8CE;
+}
+
 /* Estilos generales */
 body {
   font-family: 'Comic Sans MS', cursive, sans-serif;
-  background-color: #f0f4ff;
-  color: #3d0070;
+  background-color: var(--verde-menta);
+  color: var(--morado-profundo);
   padding: 20px;
   margin: 0;
 }
 
 h1 {
   text-align: center;
-  color: #6c00d6;
+  color: var(--morado-profundo);
   margin-bottom: 30px;
   font-size: 2rem;
 }
@@ -24,8 +32,8 @@ h1 {
 
 /* Contenedor de cada semestre */
 .semestre {
-  border: 2px solid #6c00d6;
-  background-color: #dcd7ff;
+  border: 2px solid var(--azul-violeta);
+  background-color: #f1f8f7;
   border-radius: 12px;
   padding: 12px;
   width: 300px;
@@ -38,7 +46,7 @@ h1 {
 }
 
 .semestre h2 {
-  color: #3d0070;
+  color: var(--azul-violeta);
   text-align: center;
   font-size: 1.2rem;
   margin-bottom: 10px;
@@ -48,33 +56,33 @@ h1 {
 .materia {
   display: flex;
   align-items: center;
-  background-color: #f4f0ff;
-  border: 1px solid #6c00d6;
+  background-color: var(--azul-claro);
+  border: 1px solid var(--azul-violeta);
   margin: 6px 0;
   padding: 8px 10px;
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.2s, transform 0.2s;
   font-size: 0.95rem;
+  color: white;
 }
 
 .materia:hover {
-  background-color: #e0dfff;
+  background-color: #577fa2;
   transform: scale(1.01);
 }
 
-/* Materia ya aprobada (vista) */
+/* Materia ya aprobada */
 .materia.aprobada {
   text-decoration: line-through;
-  background-color: #1e3a8a;
-  color: white;
+  background-color: var(--morado-profundo);
+  color: #ffffff;
   font-weight: bold;
-  transition: 0.3s ease;
 }
 
-/* Materia bloqueada (no cumple requisitos) */
+/* Materia bloqueada */
 .materia.bloqueada {
-  background-color: #e0e0e0;
+  background-color: #dddddd;
   cursor: not-allowed;
-  color: #888;
+  color: #888888;
 }
