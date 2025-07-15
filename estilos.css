@@ -1,20 +1,20 @@
-/* Estilos generales */
+/* Paleta de morados: #f3e5f5, #d1c4e9, #9575cd, #673ab7, #4527a0 */
+
 body {
   font-family: 'Comic Sans MS', cursive, sans-serif;
-  background-color: #B2D8CE;
-  color: #52357B;
+  background-color: #f3e5f5;
+  color: #4527a0;
   padding: 20px;
   margin: 0;
 }
 
 h1 {
   text-align: center;
-  color: #52357B;
+  color: #673ab7;
   margin-bottom: 30px;
   font-size: 2rem;
 }
 
-/* Contenedor principal de la malla */
 #malla {
   display: flex;
   flex-wrap: wrap;
@@ -22,14 +22,13 @@ h1 {
   gap: 16px;
 }
 
-/* Contenedor de cada semestre */
 .semestre {
-  border: 2px solid #5459AC;
-  background-color: #E6ECF1;
+  border: 2px solid #9575cd;
+  background-color: #e1bee7;
   border-radius: 12px;
   padding: 12px;
   width: 300px;
-  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 3px 3px 6px rgba(69, 39, 160, 0.1);
   transition: transform 0.3s ease;
 }
 
@@ -38,43 +37,37 @@ h1 {
 }
 
 .semestre h2 {
-  color: #52357B;
+  color: #4527a0;
   text-align: center;
   font-size: 1.2rem;
   margin-bottom: 10px;
 }
 
-/* Materias */
 .materia {
   display: flex;
   align-items: center;
-  background-color: #D4DCF1;
-  border: 1px solid #5459AC;
+  background-color: #f3e5f5;
+  border: 1px solid #9575cd;
   margin: 6px 0;
   padding: 8px 10px;
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.2s, transform 0.2s;
   font-size: 0.95rem;
-  color: #2f2f4f;
 }
 
-/* Hover sobre materias activas */
 .materia:hover {
-  background-color: #B2D8CE;
+  background-color: #d1c4e9;
   transform: scale(1.01);
 }
 
-/* Materia ya aprobada (vista) */
 .materia.aprobada {
   text-decoration: line-through;
-  background-color: #52357B;
+  background-color: #4527a0;
   color: white;
   font-weight: bold;
-  transition: 0.3s ease;
 }
 
-/* Materia bloqueada (no cumple requisitos) */
 .materia.bloqueada {
   background-color: #e0e0e0;
   cursor: not-allowed;
