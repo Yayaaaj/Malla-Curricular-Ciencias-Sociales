@@ -58,7 +58,6 @@ h1 {
   font-size: 0.95rem;
 }
 
-/* Hover sobre materias activas */
 .materia:hover {
   background-color: #e0dfff;
   transform: scale(1.01);
@@ -67,7 +66,7 @@ h1 {
 /* Materia ya aprobada (vista) */
 .materia.aprobada {
   text-decoration: line-through;
-  background-color: #1e3a8a; /* Azul oscuro */
+  background-color: #1e3a8a;
   color: white;
   font-weight: bold;
   transition: 0.3s ease;
@@ -78,4 +77,4 @@ h1 {
   background-color: #e0e0e0;
   cursor: not-allowed;
   color: #888;
-  fo
+}
