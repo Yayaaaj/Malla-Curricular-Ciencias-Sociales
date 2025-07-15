@@ -1,108 +1,125 @@
-const materias = [
-  { nombre: "Teorias del Aprendizaje", semestre: 1 },
-  { nombre: "Pensamiento Geografico", semestre: 1 },
-  { nombre: "Pensamiento Historico", semestre: 1 },
-  { nombre: "Grancolombianidad", semestre: 1 },
-  { nombre: "Competencias Comunicativas I", semestre: 1 },
-  { nombre: "Constitucion Politica y Democracia", semestre: 1 },
-  { nombre: "Curso de Formacion Ludica I", semestre: 1 },
-  { nombre: "Electiva Libre I", semestre: 1 },
+const planEstudios = {
+  "Primer Semestre": {
+    "Teorias del Aprendizaje": [],
+    "Pensamiento Geografico": [],
+    "Pensamiento Historico": [],
+    "Grancolombianidad": [],
+    "Competencias Comunicativas I": [],
+    "Constitucion Politica y Democracia": [],
+    "Curso de Formacion Ludica I": [],
+    "Electiva Libre I": []
+  },
+  "Segundo Semestre": {
+    "Geografia Fisica General": ["Pensamiento Geografico"],
+    "Historia Antigua": ["Pensamiento Historico"],
+    "Contexto para la Ensenanza de las Ciencias Sociales": [],
+    "Pensamiento Critico": [],
+    "Humanismo Cristiano": [],
+    "Competencias Comunicativas II": ["Competencias Comunicativas I"],
+    "Razonamiento Cuantitativo": [],
+    "Electiva Libre II": []
+  },
+  "Tercer Semestre": {
+    "Politica Educativa": ["Teorias del Aprendizaje"],
+    "Gestion de la Informacion para el Aprendizaje": [],
+    "Geografia Fisica de Colombia": ["Geografia Fisica General"],
+    "Historia Medieval": ["Historia Antigua"],
+    "Didactica de la Historia": ["Contexto para la Ensenanza de las Ciencias Sociales"],
+    "Introduccion a la Investigacion": ["Pensamiento Critico"],
+    "Antropologia": [],
+    "Curso de Formacion Ludica II": []
+  },
+  "Cuarto Semestre": {
+    "Curriculo y Evaluacion": ["Politica Educativa"],
+    "Pedagogia": ["Gestion de la Informacion para el Aprendizaje"],
+    "Geografia Humana": ["Geografia Fisica de Colombia"],
+    "Historia Moderna y Contemporanea": ["Historia Medieval"],
+    "Didactica de la Geografia": ["Didactica de la Historia"],
+    "Investigacion Educativa en Ciencias Sociales": ["Introduccion a la Investigacion"],
+    "Axiologia": [],
+    "Electiva Libre III": []
+  },
+  "Quinto Semestre": {
+    "Gestion Educativa": ["Curriculo y Evaluacion"],
+    "Geografia Economica": ["Geografia Humana"],
+    "Historia America Siglos XVI al XVIII": ["Historia Moderna y Contemporanea"],
+    "Etnohistorias de las Comunidades Andinas y Mesoamericanas": [],
+    "Practica I": ["Didactica de la Geografia"],
+    "Metodologia de Investigacion en Ciencias Sociales": ["Investigacion Educativa en Ciencias Sociales"],
+    "Etica General": [],
+    "Electiva Libre IV": []
+  },
+  "Sexto Semestre": {
+    "Contextos Escolares": ["Gestion Educativa"],
+    "Dinamicas Urbanas": ["Geografia Economica"],
+    "Historia Colombia Siglo XIX": ["Historia America Siglos XVI al XVIII"],
+    "Practica II": ["Practica I"],
+    "Trabajo de Grado I": ["Metodologia de Investigacion en Ciencias Sociales"],
+    "Familia y Bioetica": [],
+    "Curso de Formacion Ludica III": [],
+    "Electiva Libre V": []
+  },
+  "Septimo Semestre": {
+    "Educacion y Cultura": ["Contextos Escolares"],
+    "Geografia Politica": ["Dinamicas Urbanas"],
+    "Historia Colombia Siglo XX": ["Historia Colombia Siglo XIX"],
+    "Practica III": ["Practica II"],
+    "Trabajo de Grado II": ["Trabajo de Grado I"],
+    "Cultura Solidaria": [],
+    "Electiva Libre VI": []
+  },
+  "Octavo Semestre": {
+    "Ambiente y Sociedad": ["Geografia Politica"],
+    "Historia America Contemporanea": ["Historia Colombia Siglo XX"],
+    "Seminario Interdisciplinar": [],
+    "Practica IV": ["Practica III"],
+    "Trabajo de Grado III": ["Trabajo de Grado II"],
+    "Etica Profesional": [],
+    "Contexto Nacional y Global": []
+  }
+};
 
-  { nombre: "Geografia Fisica General", semestre: 2, requisitos: ["Pensamiento Geografico"] },
-  { nombre: "Historia Antigua", semestre: 2, requisitos: ["Pensamiento Historico"] },
-  { nombre: "Contexto para la Ensenanza de las Ciencias Sociales", semestre: 2 },
-  { nombre: "Pensamiento Critico", semestre: 2 },
-  { nombre: "Humanismo Cristiano", semestre: 2 },
-  { nombre: "Competencias Comunicativas II", semestre: 2, requisitos: ["Competencias Comunicativas I"] },
-  { nombre: "Razonamiento Cuantitativo", semestre: 2 },
-  { nombre: "Electiva Libre II", semestre: 2 },
+let aprobadas = [];
 
-  { nombre: "Politica Educativa", semestre: 3, requisitos: ["Teorias del Aprendizaje"] },
-  { nombre: "Gestion de la Informacion para el Aprendizaje", semestre: 3 },
-  { nombre: "Geografia Fisica de Colombia", semestre: 3, requisitos: ["Geografia Fisica General"] },
-  { nombre: "Historia Medieval", semestre: 3, requisitos: ["Historia Antigua"] },
-  { nombre: "Didactica de la Historia", semestre: 3, requisitos: ["Contexto para la Ensenanza de las Ciencias Sociales"] },
-  { nombre: "Introduccion a la Investigacion", semestre: 3, requisitos: ["Pensamiento Critico"] },
-  { nombre: "Antropologia", semestre: 3 },
-  { nombre: "Curso de Formacion Ludica II", semestre: 3 },
-
-  { nombre: "Curriculo y Evaluacion", semestre: 4, requisitos: ["Politica Educativa"] },
-  { nombre: "Pedagogia", semestre: 4, requisitos: ["Gestion de la Informacion para el Aprendizaje"] },
-  { nombre: "Geografia Humana", semestre: 4, requisitos: ["Geografia Fisica de Colombia"] },
-  { nombre: "Historia Moderna y Contemporanea", semestre: 4, requisitos: ["Historia Medieval"] },
-  { nombre: "Didactica de la Geografia", semestre: 4, requisitos: ["Didactica de la Historia"] },
-  { nombre: "Investigacion Educativa en Ciencias Sociales", semestre: 4, requisitos: ["Introduccion a la Investigacion"] },
-  { nombre: "Axiologia", semestre: 4 },
-  { nombre: "Electiva Libre III", semestre: 4 },
-
-  { nombre: "Gestion Educativa", semestre: 5, requisitos: ["Curriculo y Evaluacion"] },
-  { nombre: "Geografia Economica", semestre: 5, requisitos: ["Geografia Humana"] },
-  { nombre: "Historia America Siglos XVI al XVIII", semestre: 5, requisitos: ["Historia Moderna y Contemporanea"] },
-  { nombre: "Etnohistorias de las Comunidades Andinas y Mesoamericanas", semestre: 5 },
-  { nombre: "Practica I", semestre: 5, requisitos: ["Didactica de la Geografia"] },
-  { nombre: "Metodologia de Investigacion en Ciencias Sociales", semestre: 5, requisitos: ["Investigacion Educativa en Ciencias Sociales"] },
-  { nombre: "Etica General", semestre: 5 },
-  { nombre: "Electiva Libre IV", semestre: 5 },
-
-  { nombre: "Contextos Escolares", semestre: 6, requisitos: ["Gestion Educativa"] },
-  { nombre: "Dinamicas Urbanas", semestre: 6, requisitos: ["Geografia Economica"] },
-  { nombre: "Historia Colombia Siglo XIX", semestre: 6, requisitos: ["Historia America Siglos XVI – XVIII"] },
-  { nombre: "Practica II", semestre: 6, requisitos: ["Practica I"] },
-  { nombre: "Trabajo de Grado I", semestre: 6, requisitos: ["Metodologia de Investigacion en Ciencias Sociales"] },
-  { nombre: "Familia y Bioetica", semestre: 6 },
-  { nombre: "Curso de Formacion Ludica III", semestre: 6 },
-  { nombre: "Electiva Libre V", semestre: 6 },
-
-  { nombre: "Educacion y Cultura", semestre: 7, requisitos: ["Contextos Escolares"] },
-  { nombre: "Geografia Politica", semestre: 7, requisitos: ["Dinamicas Urbanas"] },
-  { nombre: "Historia Colombia Siglo XX", semestre: 7, requisitos: ["Historia Colombia Siglo XIX"] },
-  { nombre: "Practica III", semestre: 7, requisitos: ["Practica II"] },
-  { nombre: "Trabajo de Grado II", semestre: 7, requisitos: ["Trabajo de Grado I"] },
-  { nombre: "Cultura Solidaria", semestre: 7 },
-  { nombre: "Electiva Libre VI", semestre: 7 },
-
-  { nombre: "Ambiente y Sociedad", semestre: 8, requisitos: ["Geografia Politica"] },
-  { nombre: "Historia America Contemporanea", semestre: 8, requisitos: ["Historia Colombia Siglo XX"] },
-  { nombre: "Seminario Interdisciplinar", semestre: 8 },
-  { nombre: "Practica IV", semestre: 8, requisitos: ["Practica III"] },
-  { nombre: "Trabajo de Grado III", semestre: 8, requisitos: ["Trabajo de Grado II"] },
-  { nombre: "Etica Profesional", semestre: 8 },
-  { nombre: "Contexto Nacional y Global", semestre: 8 }
-];
-
-const aprobadas = new Set();
-
-function renderMalla() {
+function crearMalla() {
   const contenedor = document.getElementById("malla");
-  contenedor.innerHTML = "";
 
-  for (let semestre = 1; semestre <= 8; semestre++) {
-    const titulo = document.createElement("div");
-    titulo.className = "semestre-titulo";
-    titulo.textContent = `Semestre ${semestre}`;
-    contenedor.appendChild(titulo);
+  for (let semestre in planEstudios) {
+    const divSemestre = document.createElement("div");
+    divSemestre.className = "semestre";
+    const titulo = document.createElement("h2");
+    titulo.textContent = semestre;
+    divSemestre.appendChild(titulo);
 
-    materias.filter(m => m.semestre === semestre).forEach(materia => {
-      const boton = document.createElement("div");
-      boton.className = "materia";
+    for (let materia in planEstudios[semestre]) {
+      const divMateria = document.createElement("div");
+      divMateria.className = "materia";
+      divMateria.textContent = materia;
 
-      const requisitos = materia.requisitos || [];
-      const habilitada = requisitos.every(r => aprobadas.has(r));
+      const requisitos = planEstudios[semestre][materia];
+      if (requisitos.length > 0 && !requisitos.every(req => aprobadas.includes(req))) {
+        divMateria.classList.add("bloqueada");
+      }
 
-      if (!habilitada) boton.classList.add("bloqueada");
+      divMateria.onclick = () => {
+        if (divMateria.classList.contains("bloqueada")) return;
+        if (divMateria.classList.contains("aprobada")) return;
 
-      boton.textContent = materia.nombre;
-      boton.addEventListener("click", () => {
-        if (!habilitada) return alert("Requisitos no cumplidos");
-        if (!aprobadas.has(materia.nombre)) {
-          aprobadas.add(materia.nombre);
-          renderMalla();
-        }
-      });
+        divMateria.classList.add("aprobada");
+        aprobadas.push(materia);
+        actualizarMalla();
+      };
 
-      contenedor.appendChild(boton);
-    });
+      divSemestre.appendChild(divMateria);
+    }
+
+    contenedor.appendChild(divSemestre);
   }
 }
 
-renderMalla();
+function actualizarMalla() {
+  document.getElementById("malla").innerHTML = "";
+  crearMalla();
+}
+
+window.onload = crearMalla;
