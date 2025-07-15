@@ -1,3 +1,4 @@
+// Plan de estudios con requisitos
 const planEstudios = {
   "PRIMER SEMESTRE": {
     "Teorias del Aprendizaje": [],
@@ -79,8 +80,10 @@ const planEstudios = {
   }
 };
 
-let aprobadas = JSON.parse(localStorage.getItem("materiasAprobadas")) || [];
+// Recuperar materias aprobadas del localStorage
+let materiasAprobadas = JSON.parse(localStorage.getItem("materiasAprobadas")) || [];
 
+// Crear malla
 function crearMalla() {
   const contenedor = document.getElementById("malla");
   contenedor.innerHTML = "";
@@ -94,13 +97,13 @@ function crearMalla() {
     divSemestre.appendChild(h2);
 
     for (let materia in planEstudios[semestre]) {
+      const requisitos = planEstudios[semestre][materia];
+      const estaAprobada = materiasAprobadas.includes(materia);
+      const estaBloqueada = requisitos.length > 0 && !requisitos.every(req => materiasAprobadas.includes(req));
+
       const divMateria = document.createElement("div");
       divMateria.className = "materia";
       divMateria.textContent = materia;
-
-      const requisitos = planEstudios[semestre][materia];
-      const estaAprobada = aprobadas.includes(materia);
-      const estaBloqueada = requisitos.length > 0 && !requisitos.every(r => aprobadas.includes(r));
 
       if (estaAprobada) {
         divMateria.classList.add("aprobada");
@@ -111,16 +114,11 @@ function crearMalla() {
       divMateria.onclick = () => {
         if (divMateria.classList.contains("bloqueada")) return;
 
-        if (divMateria.classList.contains("aprobada")) {
-          divMateria.classList.remove("aprobada");
-          aprobadas = aprobadas.filter(m => m !== materia);
-        } else {
-          divMateria.classList.add("aprobada");
-          aprobadas.push(materia);
+        if (!materiasAprobadas.includes(materia)) {
+          materiasAprobadas.push(materia);
+          localStorage.setItem("materiasAprobadas", JSON.stringify(materiasAprobadas));
+          actualizarMalla();
         }
-
-        localStorage.setItem("materiasAprobadas", JSON.stringify(aprobadas));
-        actualizarMalla();
       };
 
       divSemestre.appendChild(divMateria);
@@ -130,8 +128,10 @@ function crearMalla() {
   }
 }
 
+// Actualizar malla (usado para recalcular desbloqueos)
 function actualizarMalla() {
   crearMalla();
 }
 
+// Inicializar
 window.onload = crearMalla;
