@@ -1,5 +1,6 @@
+// Plan de estudios con requisitos
 const planEstudios = {
-  "Primer Semestre": {
+  "PRIMER SEMESTRE": {
     "Teorias del Aprendizaje": [],
     "Pensamiento Geografico": [],
     "Pensamiento Historico": [],
@@ -9,7 +10,7 @@ const planEstudios = {
     "Curso de Formacion Ludica I": [],
     "Electiva Libre I": []
   },
-  "Segundo Semestre": {
+  "SEGUNDO SEMESTRE": {
     "Geografia Fisica General": ["Pensamiento Geografico"],
     "Historia Antigua": ["Pensamiento Historico"],
     "Contexto para la Ensenanza de las Ciencias Sociales": [],
@@ -19,7 +20,7 @@ const planEstudios = {
     "Razonamiento Cuantitativo": [],
     "Electiva Libre II": []
   },
-  "Tercer Semestre": {
+  "TERCER SEMESTRE": {
     "Politica Educativa": ["Teorias del Aprendizaje"],
     "Gestion de la Informacion para el Aprendizaje": [],
     "Geografia Fisica de Colombia": ["Geografia Fisica General"],
@@ -29,7 +30,7 @@ const planEstudios = {
     "Antropologia": [],
     "Curso de Formacion Ludica II": []
   },
-  "Cuarto Semestre": {
+  "CUARTO SEMESTRE": {
     "Curriculo y Evaluacion": ["Politica Educativa"],
     "Pedagogia": ["Gestion de la Informacion para el Aprendizaje"],
     "Geografia Humana": ["Geografia Fisica de Colombia"],
@@ -39,27 +40,27 @@ const planEstudios = {
     "Axiologia": [],
     "Electiva Libre III": []
   },
-  "Quinto Semestre": {
+  "QUINTO SEMESTRE": {
     "Gestion Educativa": ["Curriculo y Evaluacion"],
     "Geografia Economica": ["Geografia Humana"],
-    "Historia America Siglos XVI al XVIII": ["Historia Moderna y Contemporanea"],
+    "Historia America Siglos XVI – XVIII": ["Historia Moderna y Contemporanea"],
     "Etnohistorias de las Comunidades Andinas y Mesoamericanas": [],
     "Practica I": ["Didactica de la Geografia"],
     "Metodologia de Investigacion en Ciencias Sociales": ["Investigacion Educativa en Ciencias Sociales"],
     "Etica General": [],
     "Electiva Libre IV": []
   },
-  "Sexto Semestre": {
+  "SEXTO SEMESTRE": {
     "Contextos Escolares": ["Gestion Educativa"],
     "Dinamicas Urbanas": ["Geografia Economica"],
-    "Historia Colombia Siglo XIX": ["Historia America Siglos XVI al XVIII"],
+    "Historia Colombia Siglo XIX": ["Historia America Siglos XVI – XVIII"],
     "Practica II": ["Practica I"],
     "Trabajo de Grado I": ["Metodologia de Investigacion en Ciencias Sociales"],
     "Familia y Bioetica": [],
     "Curso de Formacion Ludica III": [],
     "Electiva Libre V": []
   },
-  "Septimo Semestre": {
+  "SEPTIMO SEMESTRE": {
     "Educacion y Cultura": ["Contextos Escolares"],
     "Geografia Politica": ["Dinamicas Urbanas"],
     "Historia Colombia Siglo XX": ["Historia Colombia Siglo XIX"],
@@ -68,7 +69,7 @@ const planEstudios = {
     "Cultura Solidaria": [],
     "Electiva Libre VI": []
   },
-  "Octavo Semestre": {
+  "OCTAVO SEMESTRE": {
     "Ambiente y Sociedad": ["Geografia Politica"],
     "Historia America Contemporanea": ["Historia Colombia Siglo XX"],
     "Seminario Interdisciplinar": [],
@@ -79,17 +80,24 @@ const planEstudios = {
   }
 };
 
-let aprobadas = [];
+// ✅ Materias que ya viste tú (ajústalas aquí)
+let aprobadas = [
+  "Pensamiento Historico",
+  "Pensamiento Geografico",
+  "Competencias Comunicativas I"
+];
 
+// Crea toda la malla
 function crearMalla() {
   const contenedor = document.getElementById("malla");
+  contenedor.innerHTML = "";
 
   for (let semestre in planEstudios) {
     const divSemestre = document.createElement("div");
     divSemestre.className = "semestre";
-    const titulo = document.createElement("h2");
-    titulo.textContent = semestre;
-    divSemestre.appendChild(titulo);
+    const h2 = document.createElement("h2");
+    h2.textContent = semestre;
+    divSemestre.appendChild(h2);
 
     for (let materia in planEstudios[semestre]) {
       const divMateria = document.createElement("div");
@@ -97,7 +105,12 @@ function crearMalla() {
       divMateria.textContent = materia;
 
       const requisitos = planEstudios[semestre][materia];
-      if (requisitos.length > 0 && !requisitos.every(req => aprobadas.includes(req))) {
+      const estaAprobada = aprobadas.includes(materia);
+      const estaBloqueada = requisitos.length > 0 && !requisitos.every(r => aprobadas.includes(r));
+
+      if (estaAprobada) {
+        divMateria.classList.add("aprobada");
+      } else if (estaBloqueada) {
         divMateria.classList.add("bloqueada");
       }
 
@@ -117,9 +130,10 @@ function crearMalla() {
   }
 }
 
+// 🔄 Recalcula materias desbloqueadas cuando una es aprobada
 function actualizarMalla() {
-  document.getElementById("malla").innerHTML = "";
   crearMalla();
 }
 
+// Inicializa la malla
 window.onload = crearMalla;
