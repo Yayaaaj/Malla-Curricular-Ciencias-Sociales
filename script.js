@@ -37,7 +37,7 @@ const materias = [
 
   { nombre: "Gestion Educativa", semestre: 5, requisitos: ["Curriculo y Evaluacion"] },
   { nombre: "Geografia Economica", semestre: 5, requisitos: ["Geografia Humana"] },
-  { nombre: "Historia America Siglos XVI – XVIII", semestre: 5, requisitos: ["Historia Moderna y Contemporanea"] },
+  { nombre: "Historia America Siglos XVI al XVIII", semestre: 5, requisitos: ["Historia Moderna y Contemporanea"] },
   { nombre: "Etnohistorias de las Comunidades Andinas y Mesoamericanas", semestre: 5 },
   { nombre: "Practica I", semestre: 5, requisitos: ["Didactica de la Geografia"] },
   { nombre: "Metodologia de Investigacion en Ciencias Sociales", semestre: 5, requisitos: ["Investigacion Educativa en Ciencias Sociales"] },
